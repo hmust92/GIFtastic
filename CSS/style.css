@@ -29,10 +29,10 @@
 	border:none;
 }
 
-.buttonCreatorClass:hover {
+/*.buttonCreatorClass:hover {
 
 	font-size: 20px;
-}
+}*/
 
 /*.ratingsManClass {
 
@@ -41,7 +41,16 @@
 	
 }*/
 
-/*.gifsHomie {
+.gifsHomiee {
+
+	width:200px;
+	height:200px;
+	
+}
+
+.theDivOfContainer {
 
 	float:left;
-}*/
+	padding:20px;
+	
+}

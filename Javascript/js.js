@@ -60,19 +60,22 @@ function displayGIFS() {
 
         	for (i=0; i < dataWithArray.length; i++) {
 
-        		
+				var divToContain = $('<div>'); 
+				divToContain.addClass("theDivOfContainer");     		
 
         		var ratingsMan = $('<div>');
 				ratingsMan.addClass("ratingsManClass");
 				ratingsMan.attr("data-ratings-man", dataWithArray[i].rating);
-				ratingsMan.text(dataWithArray[i].rating);
-				$("#theGifsMan").append(ratingsMan);
-				console.log("Rating: " + ratingsMan);
+				ratingsMan.text("Rating: " + dataWithArray[i].rating);
+				$(divToContain).append(ratingsMan);
+				
         		
         		var gifsHomie = $('<img>');
 				gifsHomie.addClass("gifsHomiee");
-				gifsHomie.attr("src", dataWithArray[i].images.fixed_width.url);
-				$("#theGifsMan").append(gifsHomie);
+				gifsHomie.attr("src", dataWithArray[i].images.fixed_height_still.url);
+				$(divToContain).append(gifsHomie);
+
+				$("#theGifsMan").append(divToContain);
 
 				
         		
@@ -98,6 +101,7 @@ function displayGIFS() {
 
 
   $(document).on("click", ".buttonCreatorClass", displayGIFS);
+  
 
 
 
