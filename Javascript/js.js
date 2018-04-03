@@ -95,13 +95,27 @@ function displayGIFS() {
         });
       }
 
+      function animate() {
+
+      	console.log("hello");
+      	console.log(($(this).attr("src")));
+
+      	console.log(($(this)));
+
+      	
+
+
+
+      }
+
 
 
 
 
 
   $(document).on("click", ".buttonCreatorClass", displayGIFS);
-  
+  $(document).on("click", ".gifsHomiee", animate);
+
 
 
 
