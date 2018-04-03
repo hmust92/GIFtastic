@@ -137,7 +137,7 @@ function displayGIFS() {
 
 
   $(document).on("click", ".buttonCreatorClass", displayGIFS); //the function call for clicking the buttonCreatorClass
-  $(document).on("click", ".gifsHomiee", animate); //the function call from clicking the .gifsHomiee class.
+  $(document).on("click touchstart", ".gifsHomiee", animate); //the function call from clicking the .gifsHomiee class.
 
 
 
