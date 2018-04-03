@@ -1,0 +1,47 @@
+.jumbotron {
+
+	background-color:black;
+}
+
+.text-success {
+
+	color:white;
+	text-align: center;
+}
+
+.addGif {
+
+	padding-left:4px;
+}
+
+.inputButton {
+
+	margin-top:10px;
+}
+
+.buttonCreatorClass {
+
+	margin:5px 5px;
+	color:white;
+	padding:10px;
+	background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/55/36/36579c6961eed41.jpg");
+	font-weight:bolder;
+	border:none;
+}
+
+.buttonCreatorClass:hover {
+
+	font-size: 20px;
+}
+
+/*.ratingsManClass {
+
+	float:left;
+	margin:5px 5px;
+	
+}*/
+
+/*.gifsHomie {
+
+	float:left;
+}*/
