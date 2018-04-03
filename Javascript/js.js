@@ -73,9 +73,13 @@ function displayGIFS() {
         		var gifsHomie = $('<img>');
 				gifsHomie.addClass("gifsHomiee");
 				gifsHomie.attr("src", dataWithArray[i].images.fixed_height_still.url);
+				gifsHomie.attr("pause" , dataWithArray[i].images.fixed_height_still.url);
+				gifsHomie.attr("play" , dataWithArray[i].images.fixed_width.url);
 				$(divToContain).append(gifsHomie);
 
 				$("#theGifsMan").append(divToContain);
+
+				
 
 				
         		
@@ -84,7 +88,7 @@ function displayGIFS() {
         	// var testImageURL = response.images.fixed_width.url;
 
         	
-
+        	
         	
 
         	
@@ -98,15 +102,35 @@ function displayGIFS() {
       function animate() {
 
       	console.log("hello");
-      	console.log(($(this).attr("src")));
+      	
 
-      	console.log(($(this)));
+      	var pause = $(this).attr("pause");
+      	var play = $(this).attr("play");
+
+      	console.log(pause);
+      	console.log(play);
+
+      	if ($(this).attr("src") === $(this).attr("pause")) {
+
+      	$('img[src="' + pause + '"]').attr('src', play);
+
+      }
+
+      else {
+
+      	$('img[src="' + play + '"]').attr('src', pause);
+
+      }
+
+      //  if ($(this).attr("src") === $(this).attr("play")) {
+
+      // 	$('img[src="' + play + '"]').attr('src', pause);
+
+      // }
 
       	
 
-
-
-      }
+  }
 
 
 
