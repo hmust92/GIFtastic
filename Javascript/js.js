@@ -2,50 +2,52 @@ var gifChoices = ["jedi","obama","cars","ronaldo","ibrahimovic","cancun","scener
 				  "barcelona","tv","houses","snow","mountains","harden","basketball",
 				  "mj","kobe","sith","pakistan","messi","salah",];
 
-console.log(gifChoices);
+				  //storing my own gif choices in an array to display at the beginning
+
+console.log(gifChoices); //conole logging my array
 
 
-function createButtons () {
+function createButtons () { //this function will create the buttons in javascript to activate the gif and rating
 
-	$("#buttonsMan").empty();
+	$("#buttonsMan").empty(); //if I don't do this, the buttons will just keep appending. this empties out the div first then regenerates the button
 
 
 
-	for (i=0; i<gifChoices.length; i++) {
+	for (i=0; i<gifChoices.length; i++) { //this will generate the buttons using the strings from the array
 
-		var buttonCreator = $('<button>' + gifChoices[i] + '</button>');
-		buttonCreator.addClass("buttonCreatorClass");
-		buttonCreator.attr("data-array-for-gif", gifChoices[i]);
+		var buttonCreator = $('<button>' + gifChoices[i] + '</button>'); //creating button tag in javascript
+		buttonCreator.addClass("buttonCreatorClass"); //created class for editing in css
+		buttonCreator.attr("data-array-for-gif", gifChoices[i]); //creating an attribute that holds all my choices. using the class "buttonCreatorClass", this attribute can be used to access gifchoices in another function
 		buttonCreator.text(gifChoices[i]);
-		$("#buttonsMan").append(buttonCreator);
+		$("#buttonsMan").append(buttonCreator); //div appended with buttons created
 
 	}
 
 
 }
 
-createButtons();
+createButtons(); //function call to create buttons
 
-$(".inputButton").on("click", function(event) {
+$(".inputButton").on("click", function(event) { //function to create new buttons by user
   event.preventDefault();
 
   var userInputGif = $("#addtheGiff").val().trim();
 
   console.log(userInputGif);
 
-  gifChoices.push(userInputGif);
+  gifChoices.push(userInputGif); //whatever user inputs, the value is pushed into the array i created above
 
-  createButtons();
+  createButtons(); //now that the array is updated, the createButtons function will have the new value and create the new button
 
   });
 
-function displayGIFS() {
+function displayGIFS() { 
 
 		
-		$("#theGifsMan").empty();
+		$("#theGifsMan").empty(); //empying the div everytime this function is called
 
 
-        var gifSearch = $(this).attr("data-array-for-gif");
+        var gifSearch = $(this).attr("data-array-for-gif"); //uses attribute from function above to get value of string in array
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifSearch + "&api_key=gbymoeOW8iGtf8EK1utWS1lEjBkvpUnv&limit=10";
         console.log(queryURL);
         $.ajax({
@@ -53,31 +55,33 @@ function displayGIFS() {
           method: "GET"
         }).then(function(response) {
 
-        	var dataWithArray = response.data;
+        	//above is the entire ajax call. 
+
+        	var dataWithArray = response.data; //don't feel like writing response.data every time so put it in variable
 
         	
-        	console.log(dataWithArray[0].images.fixed_width.url);
+        	console.log(dataWithArray[0].images.fixed_width.url); //testing to see if it works
 
         	for (i=0; i < dataWithArray.length; i++) {
 
-				var divToContain = $('<div>'); 
+				var divToContain = $('<div>'); //created new div 
 				divToContain.addClass("theDivOfContainer");     		
 
-        		var ratingsMan = $('<div>');
+        		var ratingsMan = $('<div>'); //created the ratings div
 				ratingsMan.addClass("ratingsManClass");
 				ratingsMan.attr("data-ratings-man", dataWithArray[i].rating);
 				ratingsMan.text("Rating: " + dataWithArray[i].rating);
-				$(divToContain).append(ratingsMan);
+				$(divToContain).append(ratingsMan); //appended ratings div to div that i created myself
 				
         		
-        		var gifsHomie = $('<img>');
+        		var gifsHomie = $('<img>'); //created image tag
 				gifsHomie.addClass("gifsHomiee");
 				gifsHomie.attr("src", dataWithArray[i].images.fixed_height_still.url);
-				gifsHomie.attr("pause" , dataWithArray[i].images.fixed_height_still.url);
-				gifsHomie.attr("play" , dataWithArray[i].images.fixed_width.url);
-				$(divToContain).append(gifsHomie);
+				gifsHomie.attr("pause" , dataWithArray[i].images.fixed_height_still.url); //the pause attribute holds stopped gif
+				gifsHomie.attr("play" , dataWithArray[i].images.fixed_width.url); //the play attribute holds animated gif
+				$(divToContain).append(gifsHomie);//appended image to div i created
 
-				$("#theGifsMan").append(divToContain);
+				$("#theGifsMan").append(divToContain); //appended the div i created which holds both ratings and the image to div that was created in html. now i can style it easily.
 
 				
 
@@ -99,34 +103,29 @@ function displayGIFS() {
         });
       }
 
-      function animate() {
+      function animate() { //function to animate it
 
       	console.log("hello");
       	
 
-      	var pause = $(this).attr("pause");
-      	var play = $(this).attr("play");
+      	var pause = $(this).attr("pause"); //storing paused gif in variable
+      	var play = $(this).attr("play"); //storing played gif in variable
 
       	console.log(pause);
       	console.log(play);
 
-      	if ($(this).attr("src") === $(this).attr("pause")) {
+      	if ($(this).attr("src") === $(this).attr("pause")) { //if the image source is the paused url, 
 
-      	$('img[src="' + pause + '"]').attr('src', play);
-
-      }
-
-      else {
-
-      	$('img[src="' + play + '"]').attr('src', pause);
+      	$('img[src="' + pause + '"]').attr('src', play); //access image tag, and change the attribute source from pause to play
 
       }
 
-      //  if ($(this).attr("src") === $(this).attr("play")) {
+      else { //if the image source is not the paused url
 
-      // 	$('img[src="' + play + '"]').attr('src', pause);
+      	$('img[src="' + play + '"]').attr('src', pause); //access image tag, and change the attribute source from play to pause
 
-      // }
+      }
+
 
       	
 
@@ -137,8 +136,8 @@ function displayGIFS() {
 
 
 
-  $(document).on("click", ".buttonCreatorClass", displayGIFS);
-  $(document).on("click", ".gifsHomiee", animate);
+  $(document).on("click", ".buttonCreatorClass", displayGIFS); //the function call for clicking the buttonCreatorClass
+  $(document).on("click", ".gifsHomiee", animate); //the function call from clicking the .gifsHomiee class.
 
 
 
