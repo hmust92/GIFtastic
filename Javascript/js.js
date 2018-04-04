@@ -23,6 +23,10 @@ function createButtons () { //this function will create the buttons in javascrip
 
 	}
 
+		const rollSound = new Audio("sound/ohYes.mp3");
+          $(".buttonCreatorClass").click(e => rollSound.play());
+          //man will scream "OOHH YESSS" everytime someone generates a gif. just for fun.
+
 
 }
 
@@ -30,6 +34,8 @@ createButtons(); //function call to create buttons
 
 $(".inputButton").on("click", function(event) { //function to create new buttons by user
   event.preventDefault();
+
+  			
 
   var userInputGif = $("#addtheGiff").val().trim();
 
@@ -40,6 +46,8 @@ $(".inputButton").on("click", function(event) { //function to create new buttons
   createButtons(); //now that the array is updated, the createButtons function will have the new value and create the new button
 
   });
+
+		  
 
 function displayGIFS() { 
 
